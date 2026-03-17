@@ -1240,24 +1240,16 @@ function populateQRSelect() {
 }
 
 // ===== MANUFACTURER ACTIONS =====
-async function registerDrug() {
+async function registerDrug(){
 
-  const name = document.getElementById('drug-name').value.trim()
-  const batch = document.getElementById('drug-batch').value.trim()
-
-  if(!name || !batch){
-    notify("⚠ ERROR","Please fill Drug Name and Batch Number.",false)
-    return
-  }
-
-  const res = await fetch("https://YOUR_BACKEND_URL/registerDrug",{
+  const res = await fetch("https://medsure-backend.onrender.com/registerDrug",{
     method:"POST",
     headers:{
       "Content-Type":"application/json"
     },
     body:JSON.stringify({
-      name:name,
-      batch:batch
+      name:"Paracetamol",
+      batch:"BT001"
     })
   })
 
@@ -1265,9 +1257,8 @@ async function registerDrug() {
 
   console.log(data)
 
-  notify("✓ REGISTERED","Drug stored on backend server.",true)
-
 }
+
   // Reset
   ['drug-name','drug-generic','drug-batch','drug-mfg-date','drug-exp-date','drug-strength','drug-qty','drug-barcode','drug-storage','drug-composition'].forEach(id => { const el = document.getElementById(id); if(el) el.value=''; });
 
